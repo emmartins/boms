@@ -40,10 +40,6 @@
         </license>
     </licenses>
 
-    <properties>
-        <!-- Version properties are inherited from parent -->
-    </properties>
-
     <dependencyManagement>
 
         <dependencies>

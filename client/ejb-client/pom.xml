@@ -38,13 +38,18 @@
         to perform remote EJB calls.
     </description>
 
-    <properties>
-     
-
-    </properties>
     <dependencyManagement>
-     
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-component-matrix</artifactId>
+                <version>${version.org.wildfly}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
+
     <dependencies>
 
         <dependency>
