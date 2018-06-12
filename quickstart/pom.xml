@@ -229,15 +229,10 @@
                 <version>14.0.0.Beta1-SNAPSHOT</version>
                 <type>pom</type>
             </dependency>
-            <!-- JBoss distributes a complete set of Java EE APIs including a Bill
-                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
-                of artifacts. We use this here so that we always get the correct versions
-                of artifacts. Here we use the jboss-eap-javaee7-with-tools stack (you can
-                read this as the JBoss stack of the Java EE APIs, with some extras tools
-                for your project, such as Arquillian for testing) -->
+
             <dependency>
                 <groupId>org.wildfly.bom</groupId>
-                <artifactId>wildfly-javaee7-with-tools</artifactId>
+                <artifactId>wildfly-javaee-with-tools</artifactId>
                 <version>14.0.0.Beta1-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~ Copyright 2018, Red Hat, Inc., and individual contributors as indicated
+  ~ by the @authors tag.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.wildfly.bom</groupId>
+        <artifactId>wildfly</artifactId>
+        <version>14.0.0.Beta1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>wildfly-javaee</artifactId>
+    <packaging>pom</packaging>
+
+    <name>WildFly Java EE Specification APIs</name>
+    <description>Dependency Management for Java EE Specification APIs, similar to jboss-javaee-specs BOMs but with versions used by WildFly</description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <!-- Version properties are inherited from parent -->
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- External JavaEE spec APIs (not part of the JBoss JavaEE Specs project) -->
+            <dependency>
+                <groupId>com.sun.mail</groupId>
+                <artifactId>javax.mail</artifactId>
+                <version>${version.com.sun.mail}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.activation</groupId>
+                <artifactId>activation</artifactId>
+                <version>${version.javax.activation}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.enterprise</groupId>
+                <artifactId>cdi-api</artifactId>
+                <version>${version.javax.enterprise}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>javax.interceptor-api</artifactId>
+                        <groupId>javax.interceptor</groupId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>javax.el-api</artifactId>
+                        <groupId>javax.el</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${version.javax.inject}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.json</groupId>
+                <artifactId>javax.json-api</artifactId>
+                <version>${version.javax.json}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.json.bind</groupId>
+                <artifactId>javax.json.bind-api</artifactId>
+                <version>${version.javax.json.bind}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>*</artifactId>
+                        <groupId>*</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>javax.jws</groupId>
+                <artifactId>jsr181-api</artifactId>
+                <version>${version.javax.jws}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>${version.javax.persistence}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.security.enterprise</groupId>
+                <artifactId>javax.security.enterprise-api</artifactId>
+                <version>${version.javax.security.enterprise}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${version.javax.validation}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-impl</artifactId>
+                <version>${version.org.apache.taglibs}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-spec</artifactId>
+                <version>${version.org.apache.taglibs}</version>
+            </dependency>
+
+            <!-- JBoss JavaEE API Specs Projects -->
+            <dependency>
+                <groupId>org.jboss.spec.javax.annotation</groupId>
+                <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.annotation.jboss-annotations-api_1.2_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.annotation</groupId>
+                <artifactId>jboss-annotations-api_1.3_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.annotation.jboss-annotations-api_1.3_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.batch</groupId>
+                <artifactId>jboss-batch-api_1.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.batch}</version>
+            </dependency>
+            <!-- managed by parent
+            <dependency>
+                <groupId>org.jboss.spec.javax.ejb</groupId>
+                <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.ejb}</version>
+            </dependency>
+            -->
+            <dependency>
+                <groupId>org.jboss.spec.javax.el</groupId>
+                <artifactId>jboss-el-api_3.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.el}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.enterprise.concurrent</groupId>
+                <artifactId>jboss-concurrency-api_1.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.enterprise.concurrent}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.faces</groupId>
+                <artifactId>jboss-jsf-api_2.2_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.faces.jboss-jsf-api_2.2_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.faces</groupId>
+                <artifactId>jboss-jsf-api_2.3_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.faces.jboss-jsf-api_2.3_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.interceptor</groupId>
+                <artifactId>jboss-interceptors-api_1.2_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.interceptor}</version>
+            </dependency>
+            <!-- managed by parent
+            <dependency>
+                <groupId>org.jboss.spec.javax.jms</groupId>
+                <artifactId>jboss-jms-api_2.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.jms}</version>
+            </dependency>
+            -->
+            <dependency>
+                <groupId>org.jboss.spec.javax.management.j2ee</groupId>
+                <artifactId>jboss-j2eemgmt-api_1.1_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.management.j2ee}</version>
+            </dependency>
+            <!-- managed by parent
+            <dependency>
+                <groupId>org.jboss.spec.javax.resource</groupId>
+                <artifactId>jboss-connector-api_1.7_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.resource}</version>
+            </dependency>
+            -->
+            <dependency>
+                <groupId>org.jboss.spec.javax.rmi</groupId>
+                <artifactId>jboss-rmi-api_1.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.rmi}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.security.auth.message</groupId>
+                <artifactId>jboss-jaspi-api_1.1_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.security.auth.message}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.security.jacc</groupId>
+                <artifactId>jboss-jacc-api_1.5_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.security.jacc}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+                        <groupId>org.jboss.spec.javax.servlet</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet</groupId>
+                <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.1_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet</groupId>
+                <artifactId>jboss-servlet-api_4.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.servlet.jboss-servlet-api_4.0_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
+                <artifactId>jboss-jsp-api_2.3_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.servlet.jsp}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+                        <groupId>org.jboss.spec.javax.servlet</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- managed by parent
+            <dependency>
+                <groupId>org.jboss.spec.javax.transaction</groupId>
+                <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.transaction}</version>
+            </dependency>
+            -->
+            <dependency>
+                <groupId>org.jboss.spec.javax.websocket</groupId>
+                <artifactId>jboss-websocket-api_1.1_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.websocket}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.ws.rs</groupId>
+                <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.ws.rs.jboss-jaxrs-api_2.0_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.ws.rs</groupId>
+                <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.ws.rs.jboss-jaxrs-api_2.1_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.xml.bind</groupId>
+                <artifactId>jboss-jaxb-api_2.2_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.xml.bind.jboss-jaxb-api_2.2_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.xml.bind</groupId>
+                <artifactId>jboss-jaxb-api_2.3_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.xml.bind.jboss-jaxb-api_2.3_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.xml.rpc</groupId>
+                <artifactId>jboss-jaxrpc-api_1.1_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.xml.rpc}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+                        <groupId>org.jboss.spec.javax.servlet</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.xml.soap</groupId>
+                <artifactId>jboss-saaj-api_1.3_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.xml.soap}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.xml.ws</groupId>
+                <artifactId>jboss-jaxws-api_2.2_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.xml.ws.jboss-jaxws-api_2.2_spec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.xml.ws</groupId>
+                <artifactId>jboss-jaxws-api_2.3_spec</artifactId>
+                <version>${version.org.jboss.spec.javax.xml.ws.jboss-jaxws-api_2.3_spec}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
