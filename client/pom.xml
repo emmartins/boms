@@ -42,6 +42,7 @@
         <module>ejb-client</module>
         <module>ejb-legacy-client</module>
         <module>jaxws-client</module>
+        <module>jaxws-client-builder</module>
         <module>jms-client</module>
     </modules>
 
