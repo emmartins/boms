@@ -29,7 +29,7 @@
         Maintain separation between the artifact id and the version to help prevent
         merge conflicts between commits changing the GA and those changing the V.
         -->
-        <version>15.0.0.Alpha1-SNAPSHOT</version>
+        <version>15.0.0.Beta1</version>
         <relativePath/>
     </parent>
 
@@ -85,11 +85,9 @@
                             <goal>build-bom</goal>
                         </goals>
                         <configuration>
-                            <addDependencyManagement>false</addDependencyManagement>
-                            <addDependencies>true</addDependencies>
                             <parent>
-                                <groupId>org.wildfly</groupId>
-                                <artifactId>wildfly-parent</artifactId>
+                                <groupId>org.jboss</groupId>
+                                <artifactId>jboss-parent</artifactId>
                                 <relativePath/>
                             </parent>
                             <bomGroupId>${project.groupId}</bomGroupId>
@@ -98,6 +96,7 @@
                             <bomName>WildFly BOMs: JAXWS Client</bomName>
                             <bomDescription>This artifact provides a bill of materials (BOM) for JAXWS client usage.</bomDescription>
                             <licenses>true</licenses>
+                            <inheritExclusions>UNMANAGED</inheritExclusions>
                         </configuration>
                     </execution>
                 </executions>
