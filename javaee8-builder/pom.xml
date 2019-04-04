@@ -33,7 +33,7 @@
 
     <packaging>pom</packaging>
 
-    <artifactId>wildfly-javaee8</artifactId>
+    <artifactId>wildfly-javaee8-builder</artifactId>
 
     <name>WildFly BOMs: Java EE 8</name>
     <description>Java EE 8 Dependency Management</description>
@@ -133,6 +133,7 @@
 
         <!-- Individual EAP Components -->
 
+<!--
             <!-- Hibernate ORM sub-modules -->
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -232,7 +233,7 @@
                 <scope>provided</scope>
                 <classifier>api</classifier>
             </dependency>
-
+-->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-atom-provider</artifactId>
@@ -373,7 +374,103 @@
             </dependency>
 
 
-            <dependency>
+            
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-component-matrix-plugin</artifactId>
+                <version>1.0.3.Final-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>build-bom</id>
+                        <goals>
+                            <goal>build-bom</goal>
+                        </goals>
+                        <configuration>
+                            <parent>
+                                <groupId>org.jboss</groupId>
+                                <artifactId>jboss-parent</artifactId>
+                                <relativePath/>
+                            </parent>
+                            <bomGroupId>${project.groupId}</bomGroupId>
+                            <bomArtifactId>wildfly-javaee8-bom</bomArtifactId>
+                            <bomVersion>${project.version}</bomVersion>
+                            <bomName>WildFly BOMs: Java EE 8</bomName>
+                            <bomDescription>Java EE 8 Dependency Management.</bomDescription>
+                            <licenses>true</licenses>
+                            <inheritExclusions>UNMANAGED</inheritExclusions>
+                            <includeDependencies>
+                            	
+                            	<!-- hibernate -->
+                            	
+								<includeDependency>
+									<groupId>org.hibernate</groupId>
+									<artifactId>hibernate-core</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.hibernate</groupId>
+									<artifactId>hibernate-entitymanager</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.hibernate</groupId>
+									<artifactId>hibernate-envers</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.hibernate</groupId>
+									<artifactId>hibernate-search-engine</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.hibernate</groupId>
+									<artifactId>hibernate-search-orm</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.hibernate.validator</groupId>
+									<artifactId>hibernate-validator</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.hibernate.validator</groupId>
+									<artifactId>hibernate-validator-annotation-processor</artifactId>
+								</includeDependency>
+			
+								<includeDependency>
+									<groupId>org.infinispan</groupId>
+									<artifactId>infinispan-core</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.infinispan</groupId>
+									<artifactId>infinispan-client-hotrod</artifactId>
+								</includeDependency>
+								<includeDependency>
+									<groupId>org.infinispan</groupId>
+									<artifactId>infinispan-directory-provider</artifactId>
+								</includeDependency>
+
+								<includeDependency>
+									<groupId>org.jboss.ejb3</groupId>
+									<artifactId>jboss-ejb3-ext-api</artifactId>
+								</includeDependency>
+                            
+                            	<includeDependency>
+					                <groupId>org.jboss.logging</groupId>
+					                <artifactId>jboss-logging-processor</artifactId>
+					            </includeDependency>
+					            <!--  the jboss-logging-tools annotations  -->
+					            <includeDependency>
+					                <groupId>org.jboss.logging</groupId>
+					                <artifactId>jboss-logging-annotations</artifactId>
+					            </includeDependency>
+					            <!--  jboss-logging API -->
+					            <includeDependency>
+					                <groupId>org.jboss.logging</groupId>
+					                <artifactId>jboss-logging</artifactId>
+					            </includeDependency>
+					            
+					            <dependency>
                 <groupId>org.wildfly.security</groupId>
                 <artifactId>wildfly-elytron</artifactId>
                 <version>${version.org.wildfly.security.elytron}</version>
@@ -397,12 +494,38 @@
                 <artifactId>wildfly-common</artifactId>
                 <version>${version.org.wildfly.common}</version>
             </dependency>
-
-        </dependencies>
-    </dependencyManagement>
-
-    <modules>
-        <module>javaee8-with-tools</module>
-    </modules>
+                            
+                            </includeDependencies>
+                            <!-- 
+                            <importDependencies>
+                                <importDependency>
+                                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                                    <artifactId>shrinkwrap-resolver-bom</artifactId>
+                                </importDependency>
+                            </importDependencies>
+                            -->
+                            <versionRefDependencies>
+                                <dependency>
+                                    <groupId>org.hibernate</groupId>
+                                    <artifactId>hibernate-jpamodelgen</artifactId>
+                                    <version>org.hibernate:hibernate-core:jar</version>
+                                </dependency>
+                                <!-- TODO
+                                <dependency>
+					                <groupId>org.jboss.narayana.xts</groupId>
+					                <artifactId>jbossxts</artifactId>
+					                <version>${version.org.jboss.narayana}</version>
+					                <scope>provided</scope>
+					                <classifier>api</classifier>
+					            </dependency>
+-->
+                            </versionRefDependencies>
+                        
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

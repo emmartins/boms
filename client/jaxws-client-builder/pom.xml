@@ -24,12 +24,12 @@
 
     <parent>
         <groupId>org.wildfly.bom</groupId>
-        <artifactId>wildfly</artifactId>
+        <artifactId>wildfly-client</artifactId>
         <!--
         Maintain separation between the artifact id and the version to help prevent
         merge conflicts between commits changing the GA and those changing the V.
         -->
-        <version>16.0.0.Beta1-SNAPSHOT</version>
+        <version>17.0.0.Beta1-SNAPSHOT</version>
     </parent>
 
     <artifactId>wildfly-jaxws-client-bom-builder</artifactId>
@@ -52,7 +52,7 @@
 
     <properties>
         <!-- Version of server -->
-        <version.server>15.0.0.Beta1</version.server>
+        <version.server>17.0.0.Beta1-SNAPSHOT</version.server>
         <version.org.jboss.shrinkwrap.resolver>2.2.6</version.org.jboss.shrinkwrap.resolver>
     </properties>
 
@@ -65,12 +65,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
                 <version>${version.org.jboss.shrinkwrap.resolver}</version>
                 <type>pom</type>
             </dependency>
+            -->
         </dependencies>
     </dependencyManagement>
 
@@ -124,11 +126,14 @@
                                     <groupId>org.jboss.logmanager</groupId>
                                     <artifactId>jboss-logmanager</artifactId>
                                 </includeDependency>
+                                <!--
                                 <includeDependency>
                                     <groupId>org.hibernate</groupId>
                                     <artifactId>hibernate-jpamodelgen</artifactId>
                                 </includeDependency>
+                                -->
                             </includeDependencies>
+                            <!-- 
                             <importDependencies>
                                 <importDependency>
                                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -142,11 +147,14 @@
                                     <version>org.hibernate:hibernate-core:jar</version>
                                 </dependency>
                             </versionRefDependencies>
+                            -->
                             <bomWithDependencies>true</bomWithDependencies>
+                            <!-->
                             <includePlugins>
                                 <includePlugin>maven-surefire-plugin</includePlugin>
                                 <includePlugin>org.wildfly.plugins:wildfly-maven-plugin</includePlugin>
                             </includePlugins>
+                            -->
                         </configuration>
                     </execution>
                 </executions>
