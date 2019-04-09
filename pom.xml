@@ -73,7 +73,7 @@
 
     <modules>
         <module>client</module>
-        <!-- <module>javaee8</module> -->
+        <module>javaee8-builder</module>
     </modules>
 
 </project>
