@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  ~ JBoss, Home of Professional Open Source
+  ~ Copyright 2018, Red Hat, Inc., and individual contributors as indicated
+  ~ by the @authors tag.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~ http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.wildfly.bom</groupId>
+        <artifactId>wildfly</artifactId>
+        <!--
+        Maintain separation between the artifact id and the version to help prevent
+        merge conflicts between commits changing the GA and those changing the V.
+        -->
+        <version>19.0.0.Beta3-SNAPSHOT</version>
+    </parent>
+
+    <packaging>pom</packaging>
+
+    <groupId>org.jboss.bom</groupId>
+    <artifactId>eap-runtime-artifacts-builder</artifactId>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- base import of server's dep management -->
+            <dependency>
+                <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-parent</artifactId>
+                <version>${version.server}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>            
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-bom-builder-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>build-bom</id>
+                        <goals>
+                            <goal>build-bom</goal>
+                        </goals>
+                        <configuration>
+                            <parent>
+                                <groupId>org.jboss</groupId>
+                                <artifactId>jboss-parent</artifactId>
+                                <relativePath/>
+                            </parent>
+                            <bomGroupId>${project.groupId}</bomGroupId>
+                            <bomArtifactId>eap-runtime-artifacts</bomArtifactId>
+                            <bomVersion>${project.version}</bomVersion>
+                            <bomName>EAP Runtime Artifacts BOM</bomName>
+                            <bomDescription>EAP Runtime Artifacts BOM</bomDescription>
+                            <licenses>true</licenses>
+                            <inheritExclusions>ALL</inheritExclusions>
+                            <includeTransitives>false</includeTransitives>
+                            <!-- uncomment if BOM should have dependencies, not just dependency management
+                            <bomWithDependencies>true</bomWithDependencies>
+                            -->
+                            <includeDependencies>							                            
+                                <dependency>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-client-properties</artifactId>
+                                </dependency>        
+                                <dependency>
+                                    <groupId>org.jboss</groupId>
+                                    <artifactId>jboss-ejb-client-legacy</artifactId>                                    
+                                </dependency>
+                            </includeDependencies>
+                            <includeDependenciesTransitives>
+                                <dependency>
+                                    <groupId>org.wildfly.core</groupId>
+                                    <artifactId>wildfly-core-galleon-pack</artifactId>
+                                    <type>pom</type>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-ee-galleon-pack</artifactId>
+                                    <type>pom</type>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-servlet-galleon-pack</artifactId>
+                                    <type>pom</type>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-galleon-pack</artifactId>
+                                    <type>pom</type>
+                                </dependency>
+                    		</includeDependenciesTransitives>
+                            <excludeDependencies>
+                                <!-- from wfly galleon packs -->
+                                <dependency>
+                                    <groupId>org.wildfly.core</groupId>
+                                    <artifactId>wildfly-core-galleon-pack</artifactId>
+                                    <type>*</type>                                    
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-ee-galleon-pack</artifactId>
+                                    <type>*</type>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.wildfly</groupId>
+                                    <artifactId>wildfly-servlet-galleon-pack</artifactId>
+                                    <type>*</type>
+                                </dependency>
+                                <!-- from wfly core galleon pack -->
+                                <!-- FIXME not found, deprecated? -->
+                                <dependency>
+                                    <groupId>sun.jdk</groupId>
+                                    <artifactId>jconsole</artifactId>
+                                </dependency>
+                                <dependency>
+                                    <groupId>org.wildfly.core</groupId>
+                                    <artifactId>wildfly-core-model-test-framework</artifactId>
+                                </dependency>
+                                <!-- FIXME not found, deprecated? -->
+                                <dependency>
+                                    <groupId>org.wildfly.core</groupId>
+                                    <artifactId>wildfly-core-model-test</artifactId>
+                                </dependency>
+                    		</excludeDependencies>                    		
+                            <addExclusions>
+                                <!--
+                                TODO add exclusions
+                                -->
+                            </addExclusions>                            
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
